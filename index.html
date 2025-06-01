@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Favicon from public URL -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" type="image/png" />
+  
+  <title>Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: rgb(38, 38, 38);
+      margin: 0;
+      padding: 0;
+      font-family: monospace;
+      scroll-behavior: smooth;
+    }
+    /* Base style for fixed header (add this outside media queries) */
+  .nav_bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(86, 83, 89);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+
+    .title {
+      color: #f39c12;
+      margin-left: 100px;
+    }
+
+    .ul {
+      display: flex;
+      list-style: none;
+      margin-right: 50px;
+      padding: 0;
+    }
+
+    .ul li {
+      padding: 5px 10px;
+      margin: 0 30px;
+    }
+
+    .ul a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .ul a:hover {
+      color: #f39c12;
+    }
+
+    #About {
+      padding: 120px 20px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(55, 54, 54);
+      min-height: 80vh;
+    }
+
+    .cont {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 80px;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .image img {
+      height: 280px;
+      width: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 10px solid rgba(86, 83, 89);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .image img:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(86, 83, 89);
+    }
+
+    .details-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      color: white;
+      max-width: 600px;
+    }
+
+    .details-content h3 {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 2;
+      text-align: left;
+      margin: 0;
+    }
+
+    .details-content p {
+      margin-top: 20px;
+      font-size: 16px;
+      color: rgb(200, 200, 200);
+    }
+
+    #Skills {
+      background-color: rgb(50, 49, 49);
+      padding: 80px 40px;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .skills-heading {
+      color: white;
+      font-size: 32px;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .skill-box {
+      background-color: rgb(86, 83, 89);
+      padding: 20px;
+      width: 150px;
+      height: 150px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .skill-box img {
+      width: 60px;
+      height: 60px;
+      filter: none;  /* no grayscale */
+      transition: transform 0.3s ease;
+    }
+
+    .skill-box:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .skill-box:hover img {
+      transform: scale(1.1);
+      filter: none;
+    }
+
+    .skill-box p {
+      color: white;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* Contact Section */
+    #Contact {
+      background-color: rgb(55, 54, 54);
+      padding: 60px 40px;
+      min-height: 50vh;
+      text-align: center;
+      color: white;
+    }
+
+    #Contact h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      background-color: rgb(86, 83, 89);
+      padding: 12px 20px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .contact-links a:hover {
+      background-color: rgb(114, 111, 117);
+      transform: scale(1.1);
+    }
+
+    .contact-links img {
+      width: 24px;
+      height: 24px;
+    }
+
+@media (min-width: 800px){
+  .title{
+    margin-left: 100px;
+  }
+}
+@media (min-width: 900px){
+  .title{
+    margin-left: 150px;
+  }
+}
+@media (min-width: 900px){
+  .title{
+    margin-left: 230px;
+  }
+}
+@media (min-width: 601px) and (max-width: 768px) {
+  .nav_bar {
+    flex-direction: column;
+    padding: 10px 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(86, 83, 89);
+    z-index: 1000;
+  }
+  .title {
+    margin-bottom: 10px;
+  }
+  .ul {
+    margin-right: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    flex-direction: row;
+    position: static;
+    width: auto;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .ul li {
+    margin: 0 15px;
+    padding: 5px 5px;
+  }
+  /* Other tablet styles as you provided */
+}
+
+/* Mobile phones (600px and below) */
+@media (max-width: 600px) {
+  .nav_bar {
+    /* Keep original fixed style */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* fixed height for header */
+    background-color: rgb(86, 83, 89);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 1000;
+    flex-direction: row;
+  }
+
+  .title {
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  .ul {
+    /* Dropdown below header */
+    position: absolute;
+    top: 70px; /* right below header */
+    left: 0;
+    width: 100%;
+    background-color: rgb(86, 83, 89); /* same as header */
+    flex-direction: column;
+    padding: 10px 0;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    z-index: 999;
+  }
+
+  .ul li {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+    padding: 10px 0;
+  }
+.nav_bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgb(86, 83, 89);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 1000;
+    flex-direction: row;
+  }
+
+  .title {
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  .ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: rgb(86, 83, 89);
+    flex-direction: column;
+    padding: 10px 0;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    z-index: 999;
+  }
+
+  .ul li {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+    padding: 10px 0;
+  }
+
+  /* About section mobile layout */
+  #About {
+    padding: 100px 20px 40px;
+  }
+
+  .cont {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .image img {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+
+  .details-content {
+    align-items: center;
+  }
+
+  .details-content h3 {
+    text-align: center;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="nav_bar">
+    <div class="title"><h1>MyPortfolio </h1></div>
+    <ul class="ul">
+      <li><a href="#About">ABOUT</a></li>
+      <li><a href="#Skills">SKILLS</a></li>
+      <li><a href="#Contact">CONTACT</a></li>
+    </ul>
+  </div>
+
+  <section id="About">
+    <div class="cont">
+      <div class="image">
+        <!-- Profile image -->
+        <img src="saireddy.jpg" alt="My Image">
+      </div>
+      <div class="details-content">
+        <h3>
+  Hai,<br />
+  I'm Yarraboina Venkatasai.<br />
+  <span style="color: #f39c12; font-weight: bold;">Education:</span> MCA (Master of Computer Applications)<br />
+  I'm skilled in Python full-stack development.<br />
+  I work with Django and Flask frameworks.
+</h3>
+<p>Date Of Birth: 10-05-2003</p>
+
+
+      </div>
+    </div>
+  </section>
+
+  <section id="Skills">
+    <h2 class="skills-heading">My Skills</h2>
+    <div class="skills-container">
+      <div class="skill-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML" />
+        <p>HTML</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS" />
+        <p>CSS</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript" />
+        <p>JavaScript</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python" />
+        <p>Python</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" alt="Java" />
+        <p>Java</p>
+      </div>
+      <div class="skill-box">
+        <img src="d.jpg" alt="Django" />
+        <p>Django</p>
+      </div>
+      <div class="skill-box">
+        <img src="flask.jpg" alt="Flask" />
+        <p>Flask</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/919/919836.png" alt="MySQL" />
+        <p>MySQL</p>
+      </div>
+      <div class="skill-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/919/919851.png" alt="React" />
+        <p>React</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="Contact">
+    <h2>Contact Me</h2>
+    <div class="contact-links">
+      <a href="mailto:yarraboinavenkatasai@gmail.com" target="_blank" rel="noopener">
+  <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="24" height="24" />
+  Email
+</a>
+      <a href="https://www.instagram.com/saiiii._10/?next=%2F&hl=en" target="_blank" rel="noopener">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+        Instagram
+      </a>
+      <a href="https://www.linkedin.com/in/yvsai" target="_blank" rel="noopener">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+        LinkedIn
+      </a>
+    </div>
+  </section>
+  <script>
+    const navBar = document.querySelector('.nav_bar');
+    const navList = document.querySelector('.ul');
+
+    // Create toggle button
+    const toggleBtn = document.createElement('button');
+    toggleBtn.innerHTML = '&#9776;';
+    toggleBtn.style.fontSize = '26px';
+    toggleBtn.style.background = 'none';
+    toggleBtn.style.border = 'none';
+    toggleBtn.style.color = 'white';
+    toggleBtn.style.cursor = 'pointer';
+
+    // Only show toggle on small screens
+    function updateToggle() {
+      if (window.innerWidth <= 600) {
+        if (!navBar.contains(toggleBtn)) {
+          navBar.insertBefore(toggleBtn, navBar.children[1]);
+          navList.style.display = 'none';
+        }
+      } else {
+        if (navBar.contains(toggleBtn)) {
+          navBar.removeChild(toggleBtn);
+          navList.style.display = 'flex';
+        }
+      }
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      navList.style.display = navList.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    window.addEventListener('resize', updateToggle);
+    window.addEventListener('load', updateToggle);
+  </script>
+</body>
+</html> 
